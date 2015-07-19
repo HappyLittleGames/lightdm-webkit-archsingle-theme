@@ -9,7 +9,7 @@ if (typeof lightdm == 'undefined') {
 	lightdm.layout= lightdm.layouts[0];
 	lightdm.sessions=[{key: "key1", name: "session 1", comment: "no comment"}, {key: "key2", name: "session 2", comment: "no comment"}];
 
-	lightdm.default_session=lightdm.sessions[0].key;
+	lightdm.default_session=lightdm.sessions[0];
 	lightdm.authentication_user= null;
 	lightdm.is_authenticated= false;
 	lightdm.can_suspend= true;
@@ -19,8 +19,8 @@ if (typeof lightdm == 'undefined') {
 
 	lightdm.users= [
 				   { name: "clarkk", real_name:"Superman", display_name: "Clark Kent", image :"", language: "en_US", layout: null, session: null, logged_in: false },
-	               { name: "brucew", real_name:"Batman", display_name: "Bruce Wayne", image :"/home/brokenImage.gif", language: "en_US", layout: null, session: null, logged_in: false},
-	               { name: "peterp", real_name:"Spiderman", display_name: "Peter Parker", image :"", language: "en_US", layout: null, session: null, logged_in: true},
+	               // { name: "brucew", real_name:"Batman", display_name: "Bruce Wayne", image :"/home/brokenImage.gif", language: "en_US", layout: null, session: null, logged_in: false},
+	               // { name: "peterp", real_name:"Spiderman", display_name: "Peter Parker", image :"", language: "en_US", layout: null, session: null, logged_in: true},
 	               ]
 
 	lightdm.sessions= [

@@ -1,34 +1,33 @@
-LightDM Webkit Arch Theme
-===========================
+# LightDM Webkit Arch Theme
+This is a LightDM webkit greeter theme for Archlinux. To be used as a single user with a single session choice, no session choice on login screen. Based on https://github.com/shosca/lightdm-webkit-archlinux-theme.
 
-This is a LightDM webkit greeter theme for Archlinux. Based on [LightDM-Webkit-MacOSX-Theme](http://github.com/Wattos/LightDM-Webkit-MacOSX-Theme)
+## Installation Instructions
+You will need lightdm as your login manager and the `lightdm-webkit2-greeter` from AUR. You need to make the webkit greeter the default greeter. This is done by editing the lightdm configuration under:
 
-Installation Instructions
--------------------------
-You will need lightdm as your login manager and the lightdm-webkit-greeter from AUR. You need to make the webkit greeter the default greeter. This is done by editing the lightdm configuration under:
+    /etc/lightdm/lightdm.conf
 
-<pre>
-/etc/lightdm/lightdm.conf
-</pre>
+Changing the `greeter-session` value to lightdm-webkit-greeter. lightdm.conf should have:
 
-and changing the greeter-session value to lightdm-webkit-greeter. lightdm.conf should have:
+    [SeatDefaults]
+    greeter-session=lightdm-webkit-greeter
+    allow-guest=false
 
-<pre>
-[SeatDefaults]
-greeter-session=lightdm-webkit-greeter
-allow-guest=false
-</pre>
+Set `user-session` in `lightdm.conf` to the session you wich to use. For Awesome VM this would be `awesome`.
 
-The second step is to install the actual theme. This is done by copying the files of this repository into the following location:
+### Install the actual theme
+Get it from AUR `lightdm-webkit-archsingle-theme`.
 
-<pre>
-/usr/share/lightdm-webkit/themes/arch
-</pre>
+Or copy the files of this repository into the following location:
+
+    /usr/share/lightdm-webkit/themes/archsingle
 
 Finally, change the /etc/lightdm/lightdm-webkit-greeter.conf file to contain the following line:
 
-<pre>
-webkit-theme=arch
-</pre>
+    webkit-theme=archsingle
 
 Now you can reboot and enjoy the new theme.
+
+## Background
+The included background come from https://unsplash.com/.
+
+You may change the background by swapping the `background.jpg` in the theme directory, ``/usr/share/lightdm-webkit/themes/archsingle`.

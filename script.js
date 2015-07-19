@@ -56,24 +56,8 @@ function show_error(text) {
 
 // called when the greeter is finished the authentication request
 function authentication_complete() {
-  var container = document.querySelector("#session_container");
-  var children = container.querySelectorAll("input");
-  var i = 0;
-  var key = "";
-  for (i = 0; i < children.length; i++) {
-    var child = children[i];
-    if (child.checked) {
-      key = child.value;
-      break;
-    }
-  }
-
   if (lightdm.is_authenticated) {
-    if (key === "") {
-      lightdm.login(lightdm.authentication_user, lightdm.default_session);
-    } else {
-      lightdm.login(lightdm.authentication_user, key);
-    }
+    lightdm.login(lightdm.authentication_user, lightdm.default_session);
   } else {
     show_error("Authentication Failed");
     start_authentication(selected_user);
@@ -101,33 +85,6 @@ function provide_secret() {
   lightdm.provide_secret(entry.value);
 }
 
-function initialize_sessions() {
-  var template = document.querySelector("#session_template");
-  var container = session_template.parentElement;
-  var i = 0;
-  container.removeChild(template);
-
-  for (i = 0; i < lightdm.sessions.length; i = i + 1) {
-    var session = lightdm.sessions[i];
-    var s = template.cloneNode(true);
-    s.id = "session_" + session.key;
-
-    var label = s.querySelector(".session_label");
-    var radio = s.querySelector("input");
-
-    console.log(s, session);
-    label.innerHTML = session.name;
-    radio.value = session.key;
-
-    var default_session = 'default' == lightdm.default_session && 0 == i;
-    if (session.key === lightdm.default_session || default_session) {
-      radio.checked = true;
-    }
-
-    container.appendChild(s);
-  }
-}
-
 function show_users() {
   var users = document.querySelectorAll(".user");
   var i = 0;
@@ -135,8 +92,8 @@ function show_users() {
     setVisible(users[i], true);
     users[i].style.left = 0;
   }
-  setVisible(document.querySelector("#password_container"), false);
-  selected_user = null;
+  // setVisible(document.querySelector("#password_container"), false);
+  // selected_user = null;
 }
 
 function user_clicked(event) {
@@ -154,6 +111,8 @@ function user_clicked(event) {
 }
 
 function setVisible(element, visible) {
+  console.log(element);
+  console.log(visible);
   if (visible) {
     element.classList.remove("hidden");
   } else {
@@ -172,15 +131,10 @@ function update_time() {
   var hh = date.getHours();
   var mm = date.getMinutes();
   var ss = date.getSeconds();
-  var suffix= "AM";
-  if (hh > 12) {
-    hh = hh - 12;
-    suffix = "PM";
-  }
   if (hh < 10) { hh = "0"+hh; }
   if (mm < 10) { mm = "0"+mm; }
   if (ss < 10) { ss = "0"+ss; }
-  time.innerHTML = hh+":"+mm + " " + suffix;
+  time.innerHTML = hh+":"+mm;
 }
 
 //////////////////////////////////
@@ -191,7 +145,6 @@ function initialize() {
   show_message("");
   initialize_users();
   initialize_timer();
-  initialize_sessions();
 }
 
 function on_image_error(e) {
@@ -219,8 +172,12 @@ function initialize_users() {
     }
 
     userNode.id = user.name;
-    userNode.onclick = user_clicked;
+    // userNode.onclick = user_clicked;
     parent.appendChild(userNode);
+    selected_user = user.name;
+    start_authentication(user.name);
+    show_message("");
+    // userNode.onclick();
   }
   setTimeout(show_users, 400);
 }

@@ -3,7 +3,8 @@
 }
 
 body {
-  background: url('low_contrast_linen.png');
+  background: url('background.jpg');
+  background-size: cover;
   display: table;
   height: 100%;
   width: 100%;
@@ -63,12 +64,14 @@ a {
 }
 
 .archlogo {
-  float: left !important;
-  margin: 10px !important;
-  padding: 0 !important;
-  height: 40px !important;
+  margin: 20px auto 10px auto;
+  /*padding: 0 !important;*/
+  height: 80px !important;
   width: 190px !important;
   background: url('archlogo.png') no-repeat;
+  -webkit-filter: drop-shadow(1px 2px 2px #222);
+  filter: drop-shadow(1px 2px 2px #222);
+  text-align: center;
 }
 
 .footer {
@@ -84,11 +87,16 @@ a {
 }
 
 .time {
-  float: right;
-  line-height: 25px;
-  font-size: 11pt;
-  margin-right: 10px;
-  margin-top: 5px;
+  /*float: right;*/
+  /*line-height: 25px;*/
+  font-size: 13pt;
+  /*margin-right: 10px;*/
+  /*margin-top: 5px;*/
+  text-shadow: 0 0;
+  position: relative;
+  font-weight: bold;
+  top: 50px;
+  font-family: Roboto;
 }
 
 .login_content {
@@ -123,7 +131,7 @@ a {
 .user {
   display: inline-block;
   margin-left: 20px;
-  margin-right: 20px; 
+  margin-right: 20px;
   margin-bottom: 20px;
   position: relative;
 }
@@ -137,14 +145,14 @@ a {
   height: 80px;
 
   border-radius: 80px;
-  border: 5px solid #08c;
+  border: 5px solid #101415;
   -webkit-transition: all 0.3s ease-in-out;
 }
 
-.user_image_wrapper:hover {
-  box-shadow:  0 0 5px 5px #08c;
+/*.user_image_wrapper:hover {
+  box-shadow:  0 0 5px 5px #666;
   -webkit-transition: all 0.2s ease-in-out;
-}
+}*/
 
 .user_image {
   width: 80px;
@@ -165,12 +173,14 @@ a {
 }
 
 .action_image {
+  -webkit-filter: drop-shadow(1px 2px 2px #222);
+  filter: drop-shadow(1px 2px 2px #222);
   height: 50px;
   width: 50px;
 
   margin-bottom: 5px;
 }
 
-.action_label {
+/*.action_label {
   color: #B2B2B2;
-}
+}*/
